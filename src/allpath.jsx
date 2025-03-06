@@ -5,7 +5,7 @@ import ValidatingForm from "./assets/email";
 import Projects from "./ProjectCards";
 import Scroll from "react-scroll";
 
-function Portfolio() {
+function Navbar() {
   return (
     <>
       <DrawerAppBar />
@@ -16,4 +16,4 @@ function Portfolio() {
   );
 }
 
-export default Portfolio;
+export default Navbar;

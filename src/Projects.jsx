@@ -6,7 +6,7 @@ import Typography from '@mui/joy/Typography';
 
 
 export default function MediaCover(props) {
-    console.log(props.project.name)
+    // console.log(props.project.name)
   return (
     // <Box
     //   component="ul"

@@ -1,28 +1,24 @@
-import { useState  ,useEffect} from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-// import ComboBox from './Navbar'
-import DrawerAppBar from './Navbar'
-import MultiActionAreaCard from './Card'
-import Portfolio from './Portfolio'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import DrawerAppBar from "./Navbar";
+import MultiActionAreaCard from "./Card";
+import ValidatingForm from "./assets/email";
+import Projects from "./ProjectCards";
+import Portfolio from "./Portfolio";
+import Navbar from "./allpath";
+import BasicTable from "./empoyees/table";
 
-function App() {
-  
-  
-  return (
-    <>
-        <DrawerAppBar/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
+const App = () =>{
+    return (
+      <BrowserRouter>
+        <Routes>
+          <Route index element={<Portfolio />}  />
+          <Route path="Profile" element={<Portfolio/>}/>
+          <Route path="Employee" element={<BasicTable/>}/>
 
-        <MultiActionAreaCard/> 
-      
-       
-    </>
-  )
-}
 
-export default App
+        </Routes>
+      </BrowserRouter>
+    );
+  }
+
+  export default App;

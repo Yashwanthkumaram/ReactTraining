@@ -20,12 +20,12 @@ const ValidatingForm = () => {
     };
 
     if (!formValues.name) {
-      newErrors.name = 'Name is required';
+      newErrors.name = 'So you dont have name you cant go further';
       valid = false;
     }
 
     if (!formValues.email) {
-      newErrors.email = 'Email is required';
+      newErrors.email =  'So you dont have Email you cant go further';
       valid = false;}
     
     // } else if (!/S+@S+.S+/.test(formValues.email)) {
@@ -33,7 +33,7 @@ const ValidatingForm = () => {
     //   valid = false;
     // }
     else if (!(formValues.email).toLowerCase().match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
-        newErrors.email = 'Invaild Email';
+        newErrors.email = 'You call this an Email 😑';
         valid = false;
       }
 
@@ -43,8 +43,18 @@ const ValidatingForm = () => {
 
   
 
-  const handleChange = (event) => {
+//   const handleChange = (event) => {
+//     const { name, value } = event.target;
+//     console.log(name ,value)
+//     setFormValues((prevValues) => ({
+//       ...prevValues,
+//       [name]: value,
+//     }));
+//   };
+
+const handleChange = (event) => {
     const { name, value } = event.target;
+    console.log(name ,value)
     setFormValues((prevValues) => ({
       ...prevValues,
       [name]: value,
@@ -96,6 +106,8 @@ window.location.href = mailtolink;
           Submit
         </Button>
       </form>
+
+    
     </>
   );
 };
