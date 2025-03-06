@@ -1,0 +1,81 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Kumbh Sans", sans-serif;
+    background: url("/src/assets/images/bg-pattern-top.svg"),url("/src/assets/images/bg-pattern-bottom.svg");
+    background-repeat: no-repeat, no-repeat;
+	background-position: right 52vw bottom 35vh, left 48vw top 52vh;
+    background-color: hsl(185, 75%, 39%);
+    background-origin: border-box;
+    
+}
+p{
+    color: hsl(227, 10%, 46%);
+    font-weight: 400;
+    font-size: 14px;
+}
+span{
+    font-size: 18px;
+    font-weight: 400;
+    padding-left: 10px;
+}
+.outer-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh
+}
+.inner-container{
+    width: fit-content;
+    height: fit-content;
+    border-radius: 10px;
+    background-color: #fff;
+    text-align: center;
+}
+/* Card Section */
+.bg-image>img{
+    border-radius: 10px 10px 0 0;
+}
+.profile-pic{
+    width: 96px;
+    height: 96px;
+    border: 4px solid #fff;
+    border-radius: 96px;
+    margin: -53px auto 23px auto;
+}
+.card-inner-grid{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid hsl(227, 10%, 46%, 0.4);
+}
+.card-inner-grid>.item{
+    margin: 15px auto;
+}
+.item>p:first-child,.name{
+    color: hsl(229, 23%, 23%);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 0;
+}
+/* Footer Section */
+footer{
+    position: absolute;
+    text-align: center;
+    align-self: self-end;
+    box-sizing: border-box;
+    color: #fff;
+    text-shadow: 5px 2px 4px rgba(250, 247, 247, 0.9);
+}
+
+footer>p{
+    font-size: 13px; 
+    font-weight: 700;
+
+}
+
+.icon{
+    vertical-align: middle; 
+    color: hsl(176, 67%, 81%);
+}
