@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from "react";
 import ValidatingForm from "./assets/email";
 
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+
+const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });
+
 import {
   Card,
   CardActionArea,
@@ -94,7 +103,10 @@ const MultiActionAreaCard = () => {
   }
 
   return (
+      <ThemeProvider theme={darkTheme}>
+                      <CssBaseline />
     <>
+
       <Card
         lg={{
           maxWidth: 345,
@@ -153,6 +165,7 @@ const MultiActionAreaCard = () => {
         <br/>
     
     </>
+    </ThemeProvider>
   );
 };
 

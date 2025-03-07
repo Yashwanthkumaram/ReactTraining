@@ -1,7 +1,26 @@
-
 import React, { useState, useEffect } from "react";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, CircularProgress, Box, MenuItem, Select, InputLabel, FormControl, Button } from "@mui/material";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, CircularProgress, Box, Button, Autocomplete, TextField } from "@mui/material";
 import DrawerAppBar from "../Navbar";
+import { useContext } from "react";
+import { ThemeContext } from "../contexts/themeContext";
+// -----------------------------
+
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+
+// const {value} = useContext(ThemeContext)
+
+
+const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });
+//-------------------------------------
+
+
+
+
 const EmployeeTable = () => {
   const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -28,8 +47,7 @@ const EmployeeTable = () => {
     fetchEmployees();
   }, []);
 
-  const handleFilterChange = (e) => {
-    const { name, value } = e.target;
+  const handleFilterChange = (e, value, name) => {
     setFilters((prevFilters) => ({ ...prevFilters, [name]: value }));
   };
 
@@ -53,6 +71,11 @@ const EmployeeTable = () => {
     );
   });
 
+//   const filtersdestinationg{
+
+//   };
+
+
   if (loading) {
     return (
       <Box display="flex" justifyContent="center" alignItems="center" minHeight="200px">
@@ -62,71 +85,84 @@ const EmployeeTable = () => {
   }
 
   return (
+    <ThemeProvider theme={darkTheme}>
+              <CssBaseline />
+
     <div className="container">
-        <DrawerAppBar/>
+        
+      <DrawerAppBar />
       <h2 className="text-center mt-4">Employee Table</h2>
       <div className="filters mt-4 mb-4">
-        <FormControl fullWidth>
-          <InputLabel>Name</InputLabel>
-          <Select name="Name" value={filters.Name} onChange={handleFilterChange}>
-            <MenuItem value="">All</MenuItem>
-            {employees.map((employee) => (
-              <MenuItem key={employee.id} value={employee.firstName}>
-                {employee.firstName}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
 
-        <FormControl fullWidth>
-          <InputLabel>Type</InputLabel>
-          <Select name="Type" value={filters.Type} onChange={handleFilterChange}>
-            <MenuItem value="">All</MenuItem>
-            {employees.map((employee) => (
-              <MenuItem key={employee.id} value={employee.username}>
-                {employee.username}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+         <Box
+                component="ul"
+                sx={{ display: "flex", gap: 2, flexWrap: "wrap", p: 0, m: 0 }}
+              >
+        <Autocomplete
+          disablePortal
+          options={ Array.from( new Set ( employees.map((employee) => employee.firstName)))}
+          value={filters.Name}
+          sx={{ width: 200 }}
 
-        <FormControl fullWidth>
-          <InputLabel>Address</InputLabel>
-          <Select name="Address" value={filters.Address} onChange={handleFilterChange}>
-            <MenuItem value="">All</MenuItem>
-            {employees.map((employee) => (
-              <MenuItem key={employee.id} value={employee.address.address}>
-                {employee.address.address}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+          onChange={(e, value) => handleFilterChange(e, value, "Name")}
+          renderInput={(params) => <TextField {...params} label="Name" />}
+          fullWidth
+        />
 
-        <FormControl fullWidth>
-          <InputLabel>Email</InputLabel>
-          <Select name="Email" value={filters.Email} onChange={handleFilterChange}>
-            <MenuItem value="">All</MenuItem>
-            {employees.map((employee) => (
-              <MenuItem key={employee.id} value={employee.email}>
-                {employee.email}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+        <Autocomplete
+          disablePortal
+          options={Array.from( new Set ( employees.map((employee) => employee.username)))}
+          value={filters.Type}
+          sx={{ width: 200 }}
 
-        <FormControl fullWidth>
-          <InputLabel>Designation</InputLabel>
-          <Select name="Designation" value={filters.Designation} onChange={handleFilterChange}>
-            <MenuItem value="">All</MenuItem>
-            {employees.map((employee) => (
-              <MenuItem key={employee.id} value={employee.company.title}>
-                {employee.company.title}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+          onChange={(e, value) => handleFilterChange(e, value, "Type")}
+          renderInput={(params) => <TextField {...params} label="Type" />}
+          fullWidth
+        />
 
-        <Button variant="contained" color="Primary" onClick={clearFilters}>
+        <Autocomplete
+          disablePortal
+          options={Array.from( new Set ( employees.map((employee) => employee.address.address)))}
+          value={filters.Address}
+          sx={{ width: 200 }}
+
+          onChange={(e, value) => handleFilterChange(e, value, "Address")}
+          renderInput={(params) => <TextField {...params} label="Address" />}
+          fullWidth
+        />
+
+        <Autocomplete
+          disablePortal
+          options={Array.from( new Set (employees.map((employee) => employee.email)))}
+          value={filters.Email}
+          sx={{ width: 200 }}
+
+          onChange={(e, value) => handleFilterChange(e, value, "Email")}
+          renderInput={(params) => <TextField {...params} label="Email" />}
+          fullWidth
+        />
+
+        <Autocomplete
+         
+          disablePortal
+          options={
+            // filtersdestinationg();
+            // console.log("sss")
+            
+            Array.from( new Set (employees.map((employee) => employee.company.title)))
+        }
+          value={filters.Designation}
+          sx={{ width: 200 }}
+
+          onChange={(e, value) => handleFilterChange(e, value, "Designation")}
+          renderInput={(params) => <TextField {...params} label="Designation" />}
+          fullWidth
+        />
+
+       
+        </Box>
+
+        <Button variant="contained" color="primary" onClick={clearFilters}>
           Clear Filters
         </Button>
       </div>
@@ -166,6 +202,8 @@ const EmployeeTable = () => {
         </Table>
       </TableContainer>
     </div>
+    </ThemeProvider>
+
   );
 };
 

@@ -18,6 +18,14 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });
+
 const drawerWidth = 240;
 const navItems = ['Profile', 'Employee'];
 
@@ -39,6 +47,7 @@ function DrawerAppBar(props) {
   };
 
   const drawer = (
+      
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant="h6" sx={{ my: 2 }}>
         MUI
